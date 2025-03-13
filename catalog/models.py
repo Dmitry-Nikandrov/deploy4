@@ -17,7 +17,11 @@ class Product(models.Model):
         verbose_name_plural = 'продукты'
         ordering = ['price']
 
+
 class Category(models.Model):
     name = models.CharField(max_length=150, verbose_name='наименование')
     description = models.CharField(max_length=150, verbose_name='описание')
+
+    def __str__(self):
+        return f'категория {self.name}'
 
