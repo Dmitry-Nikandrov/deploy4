@@ -1,0 +1,19 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}Подробное описание продукта{% endblock %}
+{% block content %}
+{% load my_tags %}
+<div class="container mt-10">
+        <h1>Подробное описание продукта</h1>
+        <div style="margin-top:50px">
+        <p>Наименование: {{product.name}}</p>
+        <p>Описание:{{product.description}}</p>
+        <p>Изображение: <img src="{{product.image|media_filter}}"> </p>
+        <p>Категория: {{product.category}}</p>
+        <p>Цена за покупку: {{product.price}} руб. за 1 кг.</p>
+        <p>Дата создания: {{product.created_at}}</p>
+        <p>Дата последнего изменения: {{product.updated_at}}</p>
+        </div>
+        <a class="btn btn-primary mt-3" href="{% url 'catalog:main' %}" role="button">Возврат на главную страницу</a>
+</div>
+{% endblock %}
