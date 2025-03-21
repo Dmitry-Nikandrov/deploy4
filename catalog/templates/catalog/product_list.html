@@ -17,7 +17,7 @@
                         <li>- Установка на сервер</li>
                         <li>- Получение обновлений</li>
                     </ul>
-                     <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'catalog:products' pk=43 %}" role="button">Просмотреть пример одного товара (кабачки)</a>
+                     <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'catalog:prod_create' %}" role="button">Создание продукта</a>
 
                 </div>
             </div>
@@ -27,17 +27,19 @@
 <h2 class="fst-italic" style="margin-top:5px;margin-bottom:25px;text-decoration: underline" align="center" >Перечень товаров</h2>
 <div class="container">
     <div class="row text-center">
-        {% for prod in products %}
+        {% for prod in object_list %}
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">{{prod.name}}</h4>
+                    <h4 class="my-0 font-weight-normal">{{object.name}}</h4>
                 </div>
                 <div class="card-body">
                     <ul class="list-unstyled mt-3 mb-2 text-start m-3">
                             <li>- {{prod.name}}, описание - {{prod.description|truncatechars:100}},фото:
                             <img src="{{prod.image|media_filter}}" alt="Извините, товар '{{prod.name|lower}}' без фото;" class="img-thumbnail"></li>
-                            <a class="btn btn-primary mt-3" href="{% url 'catalog:products' prod.pk %}" role="button">Просмотреть</a>
+                            <a class="btn btn-primary mt-3" href="{% url 'catalog:prod_detail' prod.pk %}" role="button">Просмотреть</a>
+                            <a class="btn btn-primary mt-3" href="{% url 'catalog:prod_update' prod.pk %}" role="button">Редактировать</a>
+                            <a class="btn btn-primary mt-3" href="{% url 'catalog:prod_delete' prod.pk %}" role="button">Удалить</a>
                     </ul>
                 </div>
             </div>
