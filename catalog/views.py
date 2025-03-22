@@ -1,39 +1,32 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.views.generic import ListView, DetailView, View, TemplateView
-
-from catalog.models import Product,Category
-
+from catalog.models import Product
 
 def home_contact(request):
     return render(request, template_name="catalog/contacts.html")
-
 
 class ProductListView(ListView):
     model = Product
 
 class ProductCreateView(CreateView):
     model = Product
-    fields = ('name','description','image','category','price')
-    success_url = reverse_lazy('catalog:prod_list')
+    fields = ("name", "description", "image", "category", "price")
+    success_url = reverse_lazy("catalog:prod_list")
 
 class ProductUpdateView(UpdateView):
     model = Product
-    fields = ('name','description','image','category','price')
-    success_url = reverse_lazy('catalog:prod_list')
+    fields = ("name", "description", "image", "category", "price")
+    success_url = reverse_lazy("catalog:prod_list")
 
 class ProductDetailView(DetailView):
     model = Product
 
 class ProductDeleteView(DeleteView):
     model = Product
-    success_url = reverse_lazy('catalog:prod_list')
+    success_url = reverse_lazy("catalog:prod_list")
 
 
 class ContactView(TemplateView):
-    template_name = 'catalog/contacts.html'
-
-
-
+    template_name = "catalog/contacts.html"

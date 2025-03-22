@@ -1,0 +1,52 @@
+{% extends 'blog/base.html' %}
+{% block title %}Проект разработки интернет магазина{% endblock %}
+{% block content %}
+{% load my_tags %}
+<div class="container">
+    <div class="row text-center">
+        <div class="col-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Удобный сервис ознакомления со статьями про дикую природу</h4>
+                </div>
+                  <div class="card-body">
+                     <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'blog:blog_create' %}" role="button">Создание статьи</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h2 class="fst-italic" style="margin-top:5px;margin-bottom:25px;text-decoration: underline" align="center" >Список статей</h2>
+<div class="container">
+    <div class="row text-center">
+        {% for prod in object_list %}
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h  4 class="my-0 font-weight-normal">{{object.title}}</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-2 text-start m-3">
+                            <li>- {{prod.title}}, описание - {{prod.content|truncatechars:200}},фото:</li>
+                            <li><img src="{{prod.image|media_filter}}" alt="Извините, товар '{{prod.title|lower}}' без фото;" class="img-thumbnail"></li>
+                            <a class="btn btn-primary mt-3" href="{% url 'blog:blog_detail' prod.pk %}" role="button">Просмотреть</a>
+                            <a class="btn btn-primary mt-3" href="{% url 'blog:blog_update' prod.pk %}" role="button">Редактировать</a>
+                            <a class="btn btn-primary mt-3" href="{% url 'blog:blog_delete' prod.pk %}" role="button">Удалить</a>
+                            <li>
+                                <div class="card mt-1">
+                                  <div class="card-header">
+                                    Количество просмотров статьи
+                                  </div>
+                                  <div class="card-body">
+                                    <a class="btn btn-success">{{prod.count_watches}}</a>
+                                  </div>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

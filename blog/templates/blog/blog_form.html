@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Создание нового объекта{% endblock %}
+{% block content %}
+{% load my_tags %}
+<h2>Добавление новой {{ object.name }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">
+        {% if object %}
+        Сохранить
+        {% else %}
+        Создать
+        {% endif %}
+    </button>
+    <a href="{% url 'blog:blog_list' %}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% block title %}Подробное описание статьи{% endblock %}
+{% block content %}
+{% load my_tags %}
+<div class="container mt-10">
+        <h1>Статья о дикой природе на тему:
+                <p>"{{object.title}}"</p></h1>
+        <div style="margin-top:50px">
+        <p>Заголовок: {{object.title}}</p>
+        <p>Содержание:{{object.content}}</p>
+        <p>Изображение: <img src="{{object.image|media_filter}}"> </p>
+        <p>Дата создания: {{object.created_at}}</p>
+        <p>Отметка о публикации: {{object.is_published}}</p>
+        <p>Количество просмотров: {{object.count_watches}}</p>
+        </div>
+        <a class="btn btn-primary mt-3" href="{% url 'blog:blog_list' %}" role="button">Возврат на главную страницу</a>
+</div>
+{% endblock %}
