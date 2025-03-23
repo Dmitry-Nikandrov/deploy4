@@ -11,7 +11,7 @@ class BlogListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        return queryset.filter(count_watches__gt=0)
+        return queryset.filter(is_published__exact=True)
 
 
 class BlogCreateView(CreateView):
