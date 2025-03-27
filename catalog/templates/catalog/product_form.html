@@ -3,7 +3,13 @@
 {% block title %}Создание нового {{ object.name| lower}}{% endblock %}
 {% block content %}
 {% load my_tags %}
-<h2>Добавление нового {{ object.name }}</h2>
+<h2>{% if object.name %}
+    Редактирование продукта {{ object.name }}
+    {% else %}
+    Добавление нового продукта
+    {% endif %}
+</h2>
+<div class="col-3 mt-3" >
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
@@ -16,4 +22,5 @@
     </button>
     <a href="{% url 'catalog:prod_list' %}" class="btn btn-secondary">Отмена</a>
 </form>
+</div>
 {% endblock %}

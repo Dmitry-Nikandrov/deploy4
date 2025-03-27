@@ -1,7 +1,12 @@
 from django.core.mail import send_mail
 from django.urls import reverse, reverse_lazy
-from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
-                                  UpdateView)
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
 
 from blog.models import Blog
 
@@ -35,20 +40,17 @@ class BlogDetailView(DetailView):
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         self.object.count_watches += 1
-        self.object.save()
-        return self.object
-
-    def send_mail(self):
-        if self.object.count_watches == 15:
-            print ("Сообщение успешно отправлено")
+        if self.object.count_watches == 17:
+            print("Сообщение успешно отправлено")
             send_mail(
                 "Поздравление",
                 f"Поздравление: число просмотров статьи {self.model.title} достигло {self.model.count_watches}",
                 "from@example.com",
                 ["dnikandrov@yandex.ru"],
             )
-            print ("Сообщение успешно отправлено")
-            return
+            print("Сообщение успешно отправлено")
+        self.object.save()
+        return self.object
 
 
 class BlogDeleteView(DeleteView):
