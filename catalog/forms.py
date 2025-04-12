@@ -1,5 +1,5 @@
 from xml.dom import ValidationErr
-
+from django.forms import models
 from django import forms
 from django.core.exceptions import ValidationError
 
@@ -66,3 +66,9 @@ class ProductForm(forms.ModelForm):
         self.fields.get("price").widget.attrs.update(
             {"class": "form-control", "placeholder": "Введите цену продукта"}
         )
+
+
+class ProductModeratorsForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ("is_published",)

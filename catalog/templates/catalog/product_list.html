@@ -38,8 +38,10 @@
                             <li>- {{prod.name}}, описание - {{prod.description|truncatechars:100}},фото:
                             <img src="{{prod.image|media_filter}}" alt="Извините, товар '{{prod.name|lower}}' без фото;" class="img-thumbnail"></li>
                             <a class="btn btn-primary mt-3" href="{% url 'catalog:prod_detail' prod.pk %}" role="button">Просмотреть</a>
-                            <a class="btn btn-primary mt-3" href="{% url 'catalog:prod_update' prod.pk %}" role="button">Редактировать</a>
-                            <a class="btn btn-primary mt-3" href="{% url 'catalog:prod_delete' prod.pk %}" role="button">Удалить</a>
+                            {% if user == prod.owner %}
+                                <a class="btn btn-primary mt-3" href="{% url 'catalog:prod_update' prod.pk %}" role="button">Редактировать</a>
+                                <a class="btn btn-primary mt-3" href="{% url 'catalog:prod_delete' prod.pk %}" role="button">Удалить</a>
+                            {% endif %}
                     </ul>
                 </div>
             </div>

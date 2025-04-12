@@ -119,8 +119,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 AUTH_USER_MODEL = "users.CustomUser"
 
-LOGIN_REDIRECT_URL = "/blogs/"
-LOGOUT_REDIRECT_URL = "/blog/"
+LOGIN_REDIRECT_URL = "/cat/prod/"
+LOGOUT_REDIRECT_URL = "/cat/prod/"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
