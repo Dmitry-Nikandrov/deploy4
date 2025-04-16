@@ -12,7 +12,11 @@
         <p>Цена за покупку: {{object.price}} руб. за 1 кг.</p>
         <p>Дата создания: {{object.created_at}}</p>
         <p>Дата последнего изменения: {{object.updated_at}}</p>
+        <p>cat: {{object.category}}</p>
         </div>
+        <p>Просмотреть список всех товаров в категории выбранного товара</p>
         <a class="btn btn-primary mt-3" href="{% url 'catalog:prod_list' %}" role="button">Возврат на главную страницу</a>
+        <a class="btn btn-primary mt-3" href="{% url 'catalog:prod_all' %}" role="button">Посмотреть список товаров этой категории</a>
+
 </div>
 {% endblock %}

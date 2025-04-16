@@ -1,0 +1,20 @@
+{% extends 'catalog/base.html' %}
+{% block title %}Список продуктов из категории "{{object.name}}"{% endblock %}
+{% block content %}
+{% load my_tags %}
+<div class="container mt-10">
+        <h1>Список продуктов из категории "{{object.name}}"</h1>
+        <div style="margin-top:50px">
+        {% for prod in object_list %}
+                <p>Наименование: {{prod.name}}</p>
+                <p>Описание:{{prod.description}}</p>
+                <p>Изображение: <img src="{{prod.image|media_filter}}"> </p>
+                <p>Категория: {{prod.category}}</p>
+                <p>Цена за покупку: {{prod.price}} руб. за 1 кг.</p>
+                <p>Дата создания: {{prod.created_at}}</p>
+                <p>Дата последнего изменения: {{prod.updated_at}}</p>
+        {% endfor %}
+        <a class="btn btn-primary mt-3" href="{% url 'catalog:prod_list' %}" role="button">Возврат на главную страницу</a>
+        </div>
+</div>
+{% endblock %}
