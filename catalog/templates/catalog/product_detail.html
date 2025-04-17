@@ -3,20 +3,26 @@
 {% block content %}
 {% load my_tags %}
 <div class="container mt-10">
-        <h1>Подробное описание продукта</h1>
-        <div style="margin-top:50px">
+    <h1>Подробное описание продукта</h1>
+    <div style="margin-top:50px">
         <p>Наименование: {{object.name}}</p>
-        <p>Описание:{{object.description}}</p>
-        <p>Изображение: <img src="{{object.image|media_filter}}"> </p>
+        <p>Описание: {{object.description}}</p>
+        <p>Изображение: <img src="{{object.image|media_filter}}"></p>
         <p>Категория: {{object.category}}</p>
         <p>Цена за покупку: {{object.price}} руб. за 1 кг.</p>
         <p>Дата создания: {{object.created_at}}</p>
         <p>Дата последнего изменения: {{object.updated_at}}</p>
-        <p>cat: {{object.category}}</p>
-        </div>
-        <p>Просмотреть список всех товаров в категории выбранного товара</p>
-        <a class="btn btn-primary mt-3" href="{% url 'catalog:prod_list' %}" role="button">Возврат на главную страницу</a>
-        <a class="btn btn-primary mt-3" href="{% url 'catalog:prod_all' %}" role="button">Посмотреть список товаров этой категории</a>
+    </div>
 
+    <div class="mt-4">
+        <a class="btn btn-primary" href="{% url 'catalog:products_by_category' pk=object.category.id %}"
+           role="button">
+           Посмотреть все товары категории "{{object.category.name}}"
+        </a>
+        <a class="btn btn-secondary" href="{% url 'catalog:prod_list' %}"
+           role="button">
+           Назад к списку товаров
+        </a>
+    </div>
 </div>
 {% endblock %}

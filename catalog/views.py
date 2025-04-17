@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
@@ -46,16 +46,24 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
             return self.object
         raise PermissionDenied
 
+
 @method_decorator(cache_page(60*15), name='dispatch')
 class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
 
+
 class ProductsByCategoryView(LoginRequiredMixin, ListView):
     model = Product
     template_name = 'catalog/product_from_category.html'
+
     def get_queryset(self):
-        prod_id = self.kwargs.get('pk')
-        return ProductService.get_products_from_category(category_id=prod_id)
+        category_id = self.kwargs.get('pk')
+        return Product.objects.filter(category_id=category_id).select_related('category')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = get_object_or_404(Category, id=self.kwargs.get('pk'))
+        return context
 
 
 class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):

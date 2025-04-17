@@ -5,12 +5,8 @@ from config.settings import CACHE_ENABLED
 
 
 class ProductService:
-    @staticmethod
-    def get_products_from_category(category_id):
-        product = Product.objects.get(pk = category_id)
-        cat_name = product.category
-        products = Product.objects.all().filter(category = cat_name)
-        return products
+
+
 
     @staticmethod
     def get_products_from_cache():
