@@ -15,7 +15,7 @@
     </div>
 
     <div class="mt-4">
-        <a class="btn btn-primary" href="{% url 'catalog:products_by_category' pk=object.category.id %}"
+        <a class="btn btn-primary" href="{% url 'catalog:prod_all'  object.category.id %}"
            role="button">
            Посмотреть все товары категории "{{object.category.name}}"
         </a>

@@ -1,7 +1,6 @@
 from django.contrib.auth import login
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
-from django.views import View
 from django.views.generic import CreateView
 
 from config.settings import EMAIL_HOST_USER
@@ -21,7 +20,9 @@ class UserCreateView(CreateView):
         return super().form_valid(form)
 
     def send_welcome_email(self, user_email):
-        subject = 'Добро пожаловать на сайт дикой природы'
-        message = 'Спасибо, что зарегистрировались в нашем сервисе на нашем сайте!'
+        subject = "Добро пожаловать на сайт дикой природы"
+        message = "Спасибо, что зарегистрировались в нашем сервисе на нашем сайте!"
         recipient_list = [user_email]
-        send_mail(subject, message, from_email=EMAIL_HOST_USER, recipient_list=recipient_list)
+        send_mail(
+            subject, message, from_email=EMAIL_HOST_USER, recipient_list=recipient_list
+        )

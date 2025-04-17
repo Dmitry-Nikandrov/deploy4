@@ -29,9 +29,14 @@ class Product(models.Model):
     updated_at = models.DateField(
         auto_now=True, verbose_name="дата последнего изменения"
     )
-    is_published = models.BooleanField(default=False, blank=True, null = True)
+    is_published = models.BooleanField(default=False, blank=True, null=True)
     owner = models.ForeignKey(
-        CustomUser, on_delete=models.CASCADE, related_name="owner",verbose_name="Владелец",null=True, blank = True
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name="owner",
+        verbose_name="Владелец",
+        null=True,
+        blank=True,
     )
 
     def __str__(self):
@@ -41,6 +46,4 @@ class Product(models.Model):
         verbose_name = "продукт"
         verbose_name_plural = "продукты"
         ordering = ["price"]
-        permissions = [
-            ("can_unpublish_product", 'can unpublish product')
-        ]
+        permissions = [("can_unpublish_product", "can unpublish product")]

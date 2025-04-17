@@ -1,4 +1,3 @@
-from django.forms import models
 from django import forms
 from django.core.exceptions import ValidationError
 
