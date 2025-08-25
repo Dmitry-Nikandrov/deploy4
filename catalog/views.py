@@ -6,10 +6,8 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-
 from catalog.forms import ProductForm, ProductModeratorsForm
 from catalog.models import Category, Product
-
 from .services import ProductService
 
 
