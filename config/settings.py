@@ -9,7 +9,7 @@ load_dotenv(override=True)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = "qv0$r3_@^a%k1$1*+j#vz)z+1n99qq&-$#ew-&y*pm2xgl$=+p"
+SECRET_KEY = os.getenv("PASSWORD")
 
 
 DEBUG = os.getenv("DEBUG")
@@ -66,7 +66,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": os.getenv("NAME"),
         "USER": os.getenv("USER"),
-        "PASSWORD": os.getenv("PASSWORD"),
+        "PASSWORD": os.getenv("PASSWORD_DB"),
         "host": "localhost",
         "port": 5432,
     }
@@ -141,4 +141,6 @@ if CACHE_ENABLED:
         }
     }
 
+
+STATICFILES_DIRS=[os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
